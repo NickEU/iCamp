@@ -1,4 +1,4 @@
-package tf.nick.interviewCamp.aArraysAndStrings.ic01TwoSum;
+package icamp.aArraysAndStrings.ic01TwoSum;
 
 // Given an array of integers, find a pair of integers that sums to a number Target.
 // For e.g, if A = [6,3,5,2,1,7]. Target = 4, Result= [3,1]
