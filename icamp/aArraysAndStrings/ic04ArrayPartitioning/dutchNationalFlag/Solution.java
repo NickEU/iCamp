@@ -22,22 +22,20 @@ public class Solution {
 
   }
 
+  // one pass, O(n) time O(1) space
   private static int[] solveInPlace(int[] input, int pivot) {
-    int lessThanPtr = 0;
+    int headPtr = 0;
     int tailPtr = input.length - 1;
 
-    for (int i = lessThanPtr; i <= tailPtr; ) {
+    for (int i = 0; i <= tailPtr; ) {
       int currEl = input[i];
       if (currEl > pivot) {
         swap(input, i, tailPtr--);
-        continue;
+      } else if (currEl < pivot && headPtr != i) {
+        swap(input, i, headPtr++);
+      } else {
+        i++;
       }
-      if (i > 0 && input[i - 1] == pivot && input[i] < pivot) {
-        swap(input, i - 1, i);
-        i--;
-        continue;
-      }
-      i++;
     }
 
     return input;
@@ -49,6 +47,7 @@ public class Solution {
     input[j] = temp;
   }
 
+  // one pass, O(n) time O(n) space
   private static int[] solveUsingAuxArrays(int[] input, int pivot) {
     ArrayList<Integer> smaller = new ArrayList<>();
     ArrayList<Integer> bigger = new ArrayList<>();
