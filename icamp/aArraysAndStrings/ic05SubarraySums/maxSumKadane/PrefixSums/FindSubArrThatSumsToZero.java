@@ -7,17 +7,21 @@ import java.util.HashMap;
 
 public class FindSubArrThatSumsToZero implements ITestable {
   @Override
-  public int[] getResult(int[] nums, int target) {
+  public int[] getResult(int[] nums, int target, LoggingMode log) {
     if (nums == null || target != 0) {
-      System.out.println("Illegal input");
+      if (!log.equals(LoggingMode.OFF))
+        System.out.println("Illegal input");
       return null;
     }
 
     SubArray result = null;
 
-    System.out.println("-----");
-    System.out.println("Input  = " + Arrays.toString(nums));
-    System.out.println("Target sum = " + target);
+    if (!log.equals(LoggingMode.OFF)) {
+      System.out.println("-----");
+      System.out.println("Input  = " + Arrays.toString(nums));
+      System.out.println("Target sum = " + target);
+    }
+
     int runningSum = 0;
     HashMap<Integer, Integer> runningSums = new HashMap<>();
 
@@ -27,7 +31,10 @@ public class FindSubArrThatSumsToZero implements ITestable {
         result = new SubArray(i, i + 1);
         break;
       }
-      //System.out.println(runningSum);
+
+      if (log.equals(LoggingMode.FULL))
+        System.out.printf("Running sum at index %d = %d%n", i, runningSum);
+
       if (runningSums.get(runningSum) != null) {
         result = new SubArray(runningSums.get(runningSum) + 1, i + 1);
         break;
@@ -36,15 +43,18 @@ public class FindSubArrThatSumsToZero implements ITestable {
       }
     }
 
-    System.out.print("Result = ");
+    if (!log.equals(LoggingMode.OFF))
+      System.out.print("Result = ");
     if (result == null) {
-      System.out.println("null");
+      if (!log.equals(LoggingMode.OFF))
+        System.out.println("null");
       return null;
     }
 
     int[] arr = result.buildNewSubArr(nums);
 
-    System.out.println(Arrays.toString(arr));
+    if (!log.equals(LoggingMode.OFF))
+      System.out.println(Arrays.toString(arr));
 
     return arr;
   }
