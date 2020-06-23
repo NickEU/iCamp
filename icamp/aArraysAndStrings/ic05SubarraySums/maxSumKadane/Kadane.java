@@ -62,18 +62,4 @@ public class Kadane {
 
     return result.buildNewSubArr(nums);
   }
-
-  static class SubArray {
-    private final int begin;
-    private final int end;
-
-    public SubArray(int begin, int end) {
-      this.begin = begin;
-      this.end = end;
-    }
-
-    public int[] buildNewSubArr(int[] arr) {
-      return Arrays.copyOfRange(arr, begin, end);
-    }
-  }
 }
