@@ -3,6 +3,8 @@ package icamp.aArraysAndStrings.ic05SubarraySums.maxSumKadane.PrefixSums;
 public class TestRunner {
   public static void main(String[] args) {
     runTestSuite(new FindSubArrThatSumsToZero(), 0, LoggingMode.VERBOSE);
+    runTestSuite(new FindSubArrThatSumsToK(), 0, LoggingMode.VERBOSE);
+    runTestSuite(new FindSubArrThatSumsToK(), -4, LoggingMode.VERBOSE);
   }
 
   private static void runTestSuite(ITestable o, int targetSum, LoggingMode logMode) {
