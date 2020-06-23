@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 public class SlidingWindow {
   public static void main(String[] args) {
+    System.out.println(Arrays.toString(findSubArrThatSumsToTarget(new int[]{1, 2, 2, 1, 12}, 8)));
     System.out.println(Arrays.toString(findSubArrThatSumsToTarget(new int[]{1, 2, 3, 5, 2}, 0)));
     System.out.println(Arrays.toString(findSubArrThatSumsToTarget(new int[]{8}, -1)));
     System.out.println(Arrays.toString(findSubArrThatSumsToTarget(new int[]{1, 2, 3, 5, 2}, 8)));
