@@ -38,8 +38,7 @@ public class Bottle implements Comparable<Bottle> {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Bottle bottle = (Bottle) o;
-    return getCurrentVolume() == bottle.getCurrentVolume() &&
-            getMaxVolume() == bottle.getMaxVolume();
+    return getCurrentVolume() == bottle.getCurrentVolume();
   }
 
   @Override
