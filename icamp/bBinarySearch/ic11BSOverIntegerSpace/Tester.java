@@ -14,6 +14,6 @@ public class Tester {
     System.out.println(o.getResult(10) == 3);
     System.out.println(o.getResult(999) == 31);
     System.out.println(o.getResult(1_073_741_824) == 32_768);
-    System.out.println(o.getResult(1_073_741_825) == -1);
+    System.out.println(o.getResult(2_147_483_647) == 46_340);
   }
 }
