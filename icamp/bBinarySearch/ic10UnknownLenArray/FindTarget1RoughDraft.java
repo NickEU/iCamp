@@ -19,7 +19,6 @@ public class FindTarget1RoughDraft implements ITestable{
     int start = 0;
     int end = indexWithinBounds;
     int prevSuccessful = end;
-    System.out.print("Index of target = ");
     while (start <= end) {
       try {
         int mid = start + (end - start) / 2;
