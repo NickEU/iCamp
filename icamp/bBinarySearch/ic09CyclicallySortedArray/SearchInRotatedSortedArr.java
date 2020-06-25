@@ -17,7 +17,7 @@ public class SearchInRotatedSortedArr {
 
   //O(logn) time O(1) space
   private static int returnIdx(int[] nums, int target) {
-    if (nums.length == 0 || nums == null) {
+    if (nums == null || nums.length == 0) {
       return -1;
     }
 
@@ -25,37 +25,41 @@ public class SearchInRotatedSortedArr {
     int end = nums.length - 1;
     int sortedSeqStartIdx = -1;
 
-    // find the start of the sorted sequence
-    while (start <= end) {
-      int mid = start + (end - start) / 2;
-      int currEl = nums[mid];
-      if (nums.length == 1
-          || (mid == 0 && nums[mid] < nums[mid + 1]
-              || mid == nums.length - 1 && nums[mid] > nums[mid - 1])) {
-        sortedSeqStartIdx = 0;
-        break;
+    if (nums.length == 1) {
+      sortedSeqStartIdx = 0;
+    } else {
+      // find the start of the sorted sequence
+      while (start <= end) {
+        int mid = start + (end - start) / 2;
+        int currEl = nums[mid];
+
+        if ((mid == 0 && nums[mid] < nums[mid + 1]
+            || mid == nums.length - 1 && nums[mid] > nums[mid - 1])) {
+          sortedSeqStartIdx = 0;
+          break;
+        }
+
+        if (mid - 1 >= 0 && nums[mid] < nums[mid - 1]) {
+          sortedSeqStartIdx = mid;
+          break;
+        }
+
+        if (mid + 1 < nums.length && nums[mid] > nums[mid + 1]) {
+          sortedSeqStartIdx = mid + 1;
+          break;
+        }
+
+        if (currEl >= nums[start]) {
+          start = mid + 1;
+        } else {
+          end = mid - 1;
+        }
       }
 
-      if (mid - 1 >= 0 && nums[mid] < nums[mid - 1]) {
-        sortedSeqStartIdx = mid;
-        break;
+      int largestElIdx = sortedSeqStartIdx == 0 ? nums.length - 1 : sortedSeqStartIdx - 1;
+      if (nums[sortedSeqStartIdx] > target || nums[largestElIdx] < target) {
+        return -1;
       }
-
-      if (mid + 1 < nums.length && nums[mid] > nums[mid + 1]) {
-        sortedSeqStartIdx = mid + 1;
-        break;
-      }
-
-      if (currEl >= nums[start]) {
-        start = mid + 1;
-      } else {
-        end = mid - 1;
-      }
-    }
-
-    int largestElIdx = sortedSeqStartIdx == 0 ? nums.length - 1 : sortedSeqStartIdx - 1;
-    if (nums[sortedSeqStartIdx] > target || nums[largestElIdx] < target) {
-      return -1;
     }
 
     // set up boundaries for regular binary search
