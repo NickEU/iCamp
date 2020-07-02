@@ -1,6 +1,6 @@
 package icamp.cRecursionMemoization.ic13PrintAllCombinations;
 
-public class FirstDraft {
+public class StringBuilderAsBuffer {
   static int[] input = {1, 2, 3, 4, 5};
   static int limit = 3;
   public static void main(String[] args) {
