@@ -12,8 +12,8 @@ package icamp.cRecursionMemoization.ic18easyMaze;
 
 import java.util.*;
 
-class IterativeSolutionUsingQueue {
-    static boolean pathExistsIn(int[][] maze, Logging log) {
+public class IterativeSolutionUsingQueue {
+    static boolean pathExistsIn(int[][] maze) {
         if (maze == null) {
             return false;
         }
@@ -28,8 +28,7 @@ class IterativeSolutionUsingQueue {
         while (true) {
             iterations++;
             explored.add(new Coordinate(posX, posY));
-            if (log == Logging.FULL)
-                System.out.println(posX + " " + posY);
+            System.out.println(posX + " " + posY);
             // standing on exit tile
             if (posX == height - 1 && posY == width - 1) {
                 // last check required for an edge case
@@ -70,8 +69,39 @@ class IterativeSolutionUsingQueue {
             }
         }
 
-        if (log == Logging.FULL)
-            System.out.println("Took " + iterations + " turns.");
+        System.out.println("Took " + iterations + " turns.");
         return foundExit;
+    }
+
+    private static class Coordinate {
+        private final int x;
+        private final int y;
+
+        public Coordinate(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Coordinate that = (Coordinate) o;
+            return getX() == that.getX() &&
+                    getY() == that.getY();
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getX(), getY());
+        }
     }
 }
