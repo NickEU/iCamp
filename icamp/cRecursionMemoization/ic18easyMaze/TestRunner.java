@@ -74,7 +74,10 @@ public class TestRunner {
 
     public static void main(String[] args) {
         TestRunner runner = new TestRunner();
+        System.out.println("TESTING ITERATIVE:");
         runner.start(IterativeSolutionUsingQueue::pathExistsIn);
+        System.out.println("TESTING RECURSIVE:");
+        runner.start(RecursiveWithoutMemo::pathExistsIn);
     }
 
     void start(BiFunction<int[][], Logging, Boolean> f) {
